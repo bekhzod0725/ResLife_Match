@@ -8,20 +8,15 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.GridLayout;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -68,6 +63,27 @@ public class PreferenceActivity extends AppCompatActivity {
                 unregisterReceiver(this);
             }
         }, intentFilter);
+
+        mSpinner.setOnItemClickListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                if ((Spinner) parent == (Spinner) findViewById(R.id.spSports)) {
+                    Pipeline.setPreference(1, pos, 0.8f);
+                } else if ((Spinner) parent == (Spinner) findViewById(R.id.spMusic)) {
+                    Pipeline.setPreference(1, pos, 0.8f);
+                } else if ((Spinner) parent == (Spinner) findViewById(R.id.spMovie)) {
+                    Pipeline.setPreference(1, pos, 0.8f);
+                } else if ((Spinner) parent == (Spinner) findViewById(R.id.spBedTime)) {
+                    Pipeline.setPreference(1, pos, 0.8f);
+                } else if ((Spinner) parent == (Spinner) findViewById(R.id.spWakeup)) {
+                    Pipeline.setPreference(1, pos, 0.8f);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     @Override
@@ -176,6 +192,31 @@ public class PreferenceActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+    private void storePreferences() {
+
+    }
+
+    public class SpinnerOnItemSelectedListener implements AdapterView.OnItemSelectedListener {
+        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+            if ((Spinner) parent == (Spinner) findViewById(R.id.spSports)) {
+                Pipeline.setPreference(1, pos, 0.8f);
+            } else if ((Spinner) parent == (Spinner) findViewById(R.id.spMusic)) {
+                Pipeline.setPreference(1, pos, 0.8f);
+            } else if ((Spinner) parent == (Spinner) findViewById(R.id.spMovie)) {
+                Pipeline.setPreference(1, pos, 0.8f);
+            } else if ((Spinner) parent == (Spinner) findViewById(R.id.spBedTime)) {
+                Pipeline.setPreference(1, pos, 0.8f);
+            } else if ((Spinner) parent == (Spinner) findViewById(R.id.spWakeup)) {
+                Pipeline.setPreference(1, pos, 0.8f);
+            }// else if ((Spinner) parent == (Spinner) findViewById(R.id.spTvShows)) {
+            //    Pipeline.setPreference(1, pos, 0.8f);
+            //}
+        }
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
     }
 
     private void startMatch() {
